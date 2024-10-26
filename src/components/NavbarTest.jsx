@@ -3,9 +3,11 @@ import { Link } from "react-router-dom"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useContext } from 'react'
+import { CartContext } from '../context/CartProvider'
 
 const NavbarTest = () => {
-    const total = "25.000";
+    const { total } = useContext(CartContext)
     const token = false;
     return (
         <Navbar expand="lg" className="bg-body-tertiary">

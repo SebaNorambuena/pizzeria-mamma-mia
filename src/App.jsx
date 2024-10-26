@@ -10,24 +10,30 @@ import Cart from "./pages/Cart"
 import Pizza from "./pages/Pizza"
 import Profile from "./components/Profile"
 import NotFound from "./components/NotFound"
+import ApiProvider from "./context/ApiProvider"
+import CartProvider from "./context/CartProvider"
 
 const App = () => {
   const [user, setUser] = useState(null);
 
   return (
     <>
-    <NavbarTest />
-    <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/cart" element={<Cart />} />
-      <Route path="/pizza/p001" element={<Pizza />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/404" element={<NotFound />} />
-      <Route path="/*" element={<NotFound />} />
-    </Routes>
-    <Footer />
+    <ApiProvider>
+      <CartProvider>
+        <NavbarTest />
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/pizza/p001" element={<Pizza />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/404" element={<NotFound />} />
+          <Route path="/*" element={<NotFound />} />
+        </Routes>
+        <Footer />
+      </CartProvider>
+    </ApiProvider>
     </>
   )
 }
