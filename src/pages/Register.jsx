@@ -24,24 +24,12 @@ const Register = ({user}) => {
     }
 
     return (
-        <div style={{
-            width:'100%',
-            display: 'flex',
-            flexDirection:'column',
-            gap:'1rem',
-            padding:'2rem',
-            justifyContent: 'center',
-            alignItems: 'center'
-        }}>
-            <form action="" onSubmit={validarInput} style={{
-            display: 'flex',
-            flexDirection:'column',
-            gap:'1rem'
-        }}>
-                <input type="email" placeholder="Ingresa tu Email" onChange={(e)=> setEmail(e.target.value)}/>
+        <div className="d-flex flex-column gap-3 w-100 p-3 justify-content-center align-items-center">
+            <form action="" onSubmit={validarInput} className="d-flex flex-column gap-3">
+                <input type="email" placeholder="Ingresa tu email" onChange={(e)=> setEmail(e.target.value)}/>
                 <input type="password" placeholder="Ingresa tu contraseña" onChange={(e)=> setPassword(e.target.value)}/>
                 <input type="password" placeholder="Valida tu contraseña" onChange={(e)=> setVpassword(e.target.value)}/>
-                <button type="submit">Registrar</button>
+                <button className="btn btn-primary" type="submit">Registrar</button>
             </form>
         </div>
     )

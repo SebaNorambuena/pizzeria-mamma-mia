@@ -8,8 +8,8 @@ const CardPizza = ({product}) => {
     const {addToCart} = useContext(CartContext)
 
     return (
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={product.img} />
+        <Card style={{ width: '20rem' }}>
+            <img src={product.img} />
             <Card.Body>
                 <Card.Title>Pizza {product.name}</Card.Title>
             </Card.Body>
@@ -30,8 +30,10 @@ const CardPizza = ({product}) => {
             </ListGroup>
             <Card.Body>
                 <Card.Text>Precio: ${product.price}</Card.Text>
-                <button className="btn btn-primary" href="#">Ver Mas</button>
-                <button className="btn btn-primary" onClick={() => addToCart(product)}>Añadir</button>
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-secondary" href="#">Ver Mas</button>
+                    <button className="btn btn-primary" onClick={() => addToCart(product)}>Añadir <i className="fa-solid fa-cart-shopping"></i></button>
+                </div>
             </Card.Body>
         </Card>
     );

@@ -22,7 +22,7 @@ const NavbarTest = () => {
                 </Nav>
                 <Nav className="justify-content-end gap-3">
                     <Link to="/profile"><p>Profile</p></Link>
-                    <Link to="/cart"><p>Total: $ {total}</p></Link>
+                    <Link to="/cart"><p><i className="fa-solid fa-cart-shopping"></i> $ {total}</p></Link>
                 </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -10,26 +10,26 @@ const Cart = () => {
     <div style={{padding:"1rem"}}>
         {
             cart.map((cart) =>(
-                <div key={cart.id}>
-                    <div style={{border:"black 1px solid", display:"flex", padding:"1rem", gap:"1rem",justifyContent: "space-around"}}>
-                        <img style={{width:"300px"}} src={cart.img} alt="Imagen de pizza" />
-                        <div style={{display:"flex", flexDirection:"column", justifyContent:"center"}}>
-                            <h2>Pizza {cart.name}</h2>
-                            <h3>Precio: {cart.price}</h3>
-                            <h3>Cantidad: {cart.count}</h3>
-                        </div>
-                        <div style={{display:"flex", gap:"1rem"}}>
-                            <button style={{width:"30px", height:"30px"}} onClick={() => disminuir(cart)}>-</button>
-                            <button style={{width:"30px", height:"30px"}} onClick={() => aumentar(cart)}>+</button>
-                            <button style={{width:"30px", height:"30px"}} onClick={() => removeFromCart(cart)}>Eliminar</button>
+                <div key={cart.id} className='container'>
+                    <div className='d-flex p-3 flex-wrap items-center justify-content-evenly'>
+                        <img style={{width:"200px"}} src={cart.img} alt="Imagen de pizza" />
+                        <div className='d-flex flex-column justify-content-between'>
+                            <h6>Pizza {cart.name}</h6>
+                            <h5>Precio: {cart.price}</h5>
+                            <p>Cantidad: {cart.count}</p>
+                            <div className='d-flex justify-content-between'>
+                                <p onClick={() => aumentar(cart)}><i className="fa-solid fa-plus"></i></p>
+                                <p onClick={() => disminuir(cart)}><i className="fa-solid fa-minus"></i></p>
+                                <p className="text-danger" onClick={() => removeFromCart(cart)}><i className="fa-solid fa-trash"></i></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             ))
         }
-        <div>
+        <div className='d-flex justify-content-evenly'>
             <h3>Total: {total}</h3>
-            <button>Pagar</button>
+            <button className='btn btn-primary'>Pagar</button>
         </div>
     </div>
   )
