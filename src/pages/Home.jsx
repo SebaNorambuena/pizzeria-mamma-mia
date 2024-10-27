@@ -30,9 +30,7 @@ const Home = () => {
   return (
     <>
     <Header/>
-    <div style={{
-      display: "flex", justifyContent: "space-around", padding: "1rem", gap: "1rem", flexWrap: "wrap"
-      }}>
+    <div className="container d-flex justify-content-around p-3 gap-3 flex-wrap">
       {
         products.map((product) =>(
             
