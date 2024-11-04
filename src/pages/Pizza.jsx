@@ -1,11 +1,14 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { useParams } from 'react-router-dom'
+import { CartContext } from '../context/CartProvider'
 
 const Pizza = () => {
     const [item, setItem] = useState([])
+    const { id } = useParams()
+    const {addToCart} = useContext(CartContext)
 
-    const url = "http://localhost:5000/api/pizzas/p001"
+    const url = `http://localhost:5000/api/pizzas/${id}`
     const getPizza = async() => {
         const res = await fetch(url)
         const data = await res.json()
@@ -17,29 +20,22 @@ const Pizza = () => {
     }, [])
 
     return (
-        <div key={item.id}>
-            <h1>Pizza {item.name}</h1>
-            <div className='d-flex justify-content-center align-items-center gap-2'>
-
-                <img src={item.img} alt="" style={{
-                    width:"450px",
-                    border:"black 1px solid"
-                }}/>
-
-                <div className='d-flex flex-column justify-content-center'>
-                    <p>{item.desc}</p>
-                    <strong>Ingredientes</strong>
-                    <ul>
+        <div style={{padding:"1rem"}}>
+            <div key={item.id} className='container'>
+                <div className='d-flex p-3 flex-wrap items-center justify-content-evenly'>
+                    <img style={{width:"400px"}} src={item.img} alt="Imagen de pizza" />
+                    <div className='d-flex flex-column justify-content-between'>
+                        <h3>Pizza {item.name}</h3>
+                        <p>{item.desc}</p>
                         {
-                        item.ingredients?.map(ingredients => (
-                            <li key={ingredients}>{ingredients}</li>
+                        item.ingredients?.map(ingredient =>(
+                            <p key={ingredient}><i className="fa-solid fa-utensils"></i> {ingredient}</p>
                         ))
                         }
-                    </ul>
-                    <p><strong>Precio: ${item.price}</strong></p>
-                    <button className='btn btn-primary'>Añadir al carrito</button>  
+                        <h3>Precio: {item.price}</h3>
+                        <button className='btn btn-primary' onClick={()=>addToCart(item)}>Añadir al carrito</button>
+                    </div>
                 </div>
-                
             </div>
         </div>
     )

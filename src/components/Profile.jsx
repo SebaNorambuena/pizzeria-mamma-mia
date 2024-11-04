@@ -1,7 +1,10 @@
 import React from 'react'
 import perfil from "../assets/img/perfil.png"
+import { useContext } from 'react'
+import { UserContext } from '../context/UserProvider'
 
 const Profile = () => {
+  const { logOut } = useContext(UserContext)
   return (
     <div className='d-flex justify-content-center align-items-center'>
         <div className='d-flex flex-column justify-content-center align-items-start gap-3'>
@@ -13,7 +16,7 @@ const Profile = () => {
                 <button className='btn btn-primary'>Agregar</button>
             </div>
             <button className='btn btn-primary'>Editar perfil</button>
-            <button className='btn btn-primary'>Cerrar sesion</button>
+            <button className='btn btn-primary' onClick={()=>logOut()}>Cerrar sesion</button>
         </div> 
     </div>
   )
