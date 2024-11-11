@@ -7,7 +7,6 @@ const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [total, setTotal] = useState(0)
 
-
     // agregar a cart
     const addToCart = (product) => {
         console.log(product)
@@ -38,13 +37,33 @@ const CartProvider = ({children}) => {
             setCart(cart.map(p => p.id === product.id ? {...p, count: p.count - 1} : p))
         }
     }
+
+    const pagoTotal = async() => {
+        const token = localStorage.getItem("token")
+        await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+        cart: cart,
+        }),
+        });
+        if (cart.length === 0) {
+            alert("No hay productos en el carrito")
+        } else {
+            alert("Pago exitoso")
+        }
+    }
+
     useEffect  (() => {
         const total = cart.reduce((total, product) => total + product.price * product.count, 0)
         setTotal(total)
     }, [cart])  
 
     return (
-        <CartContext.Provider value={{cart, addToCart, removeFromCart, aumentar, disminuir, total}}>
+        <CartContext.Provider value={{cart, pagoTotal, addToCart, removeFromCart, aumentar, disminuir, total}}>
             {children}
         </CartContext.Provider>
     )

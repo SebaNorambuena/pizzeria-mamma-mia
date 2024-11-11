@@ -10,7 +10,7 @@ import { UserContext } from '../context/UserProvider'
 const NavbarTest = () => {
     const { total } = useContext(CartContext)
     const isActiveClass = ({ isActive }) => (isActive ? 'text-blue' : 'text-black')
-    const { token, logOut } = useContext(UserContext)
+    const { user, logOut } = useContext(UserContext)
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -20,11 +20,10 @@ const NavbarTest = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto gap-3">
                     <NavLink to="/" className={isActiveClass}>Home</NavLink>
-                    {token ? <NavLink to="/profile" className={isActiveClass}>Profile</NavLink> : <NavLink to="/login" className={isActiveClass}>Login</NavLink>}
-                    {token ? <Link to="#" className='text-black' onClick={()=>logOut()}>Logout</Link> : <NavLink to="/register" className={isActiveClass}>Register</NavLink>}
+                    {user ? <NavLink to="/profile" className={isActiveClass}>Profile</NavLink> : <NavLink to="/login" className={isActiveClass}>Login</NavLink>}
+                    {user ? <Link to="#" className='text-black' onClick={()=>logOut()}>Logout</Link> : <NavLink to="/register" className={isActiveClass}>Register</NavLink>}
                 </Nav>
                 <Nav className="justify-content-end gap-3">
-                    {token ? null : <NavLink to="/profile" className={isActiveClass}>Profile</NavLink>}
                     <NavLink to="/cart" className={isActiveClass}><i className="fa-solid fa-cart-shopping"></i> $ {total}</NavLink>
                 </Nav>
                 </Navbar.Collapse>

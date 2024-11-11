@@ -1,12 +1,14 @@
 import React, { useContext } from 'react'
+import { useEffect } from 'react'
 //import { useState } from 'react'
 //import { pizzaCart } from '../components/pizzas'
 import { CartContext } from '../context/CartProvider'
 import { UserContext } from '../context/UserProvider'
 
 const Cart = () => {
-    const { cart, removeFromCart, aumentar, disminuir, total } = useContext(CartContext)
-    const { token } = useContext(UserContext)
+    const { cart, removeFromCart, aumentar, disminuir, total, pagoTotal } = useContext(CartContext)
+    const { user } = useContext(UserContext)
+
     
   return (
     <div style={{padding:"1rem"}}>
@@ -31,7 +33,7 @@ const Cart = () => {
         }
         <div className='d-flex justify-content-evenly'>
             <h3>Total: {total}</h3>
-            {token ? <button className='btn btn-primary'>Pagar</button> : <button className='btn btn-secondary' disabled >Pagar</button>}
+            {user ? <button className='btn btn-primary' onClick={pagoTotal}>Pagar</button> : <button className='btn btn-secondary' disabled >Pagar</button>}
         </div>
     </div>
   )
